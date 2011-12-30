@@ -12,6 +12,7 @@ namespace Icfp2006
     private uint executionFinger_; 
     private uint[] registers_ = new uint[8];
     private uint[][] arrays_;
+    private Queue<int> arraysFree_ = new Queue<int>();
     Func<uint> input_;
     Action<uint> output_;
 
@@ -20,6 +21,10 @@ namespace Icfp2006
       input_ = input;
       output_ = output;
       arrays_ = new uint[INIT_ARRAYS][];
+      for (int i = 1; i < INIT_ARRAYS; ++i)
+      {
+        arraysFree_.Enqueue(i);
+      }
     }
 
     public UniversalMachine() : this(() => { return (uint)Console.Read(); }, (uint c) => Console.Write((char)c))
@@ -68,21 +73,22 @@ namespace Icfp2006
           Environment.Exit(0);
           break;
         case 8: // Allocation.
-          int length = arrays_.Length;
-          int i;
-          for (i = 0; i < length; ++i) {
-            if (arrays_[i] == null) {
-              break;
+          if (arraysFree_.Count == 0)
+          {
+            int length = arrays_.Length;
+            Array.Resize(ref arrays_, length * 2);
+            for (int i = length; i < length * 2; ++i)
+            {
+              arraysFree_.Enqueue(i);
             }
           }
-          if (i == length) {
-            Array.Resize(ref arrays_, length * 2);
-          }
-          arrays_[i] = new uint[registers_[registerC]];
-          registers_[registerB] = (uint)i;
+          int freeArray = arraysFree_.Dequeue();
+          arrays_[freeArray] = new uint[registers_[registerC]];
+          registers_[registerB] = (uint)freeArray;
           break;
         case 9: // Abandonment.
           arrays_[registers_[registerC]] = null;
+          arraysFree_.Enqueue((int)registers_[registerC]);
           break;
         case 10: // Output.
           output_(registers_[registerC]);
