@@ -11,14 +11,17 @@ Global
 		Release|x86 = Release|x86
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{EA09D4F1-5BF0-40B4-94BB-C3902615BBCB}.Debug|x86.ActiveCfg = Debug|x86
-		{EA09D4F1-5BF0-40B4-94BB-C3902615BBCB}.Debug|x86.Build.0 = Debug|x86
-		{EA09D4F1-5BF0-40B4-94BB-C3902615BBCB}.Release|x86.ActiveCfg = Release|x86
-		{EA09D4F1-5BF0-40B4-94BB-C3902615BBCB}.Release|x86.Build.0 = Release|x86
 		{5E4A8713-E558-4CDD-83AE-1A38BA1C2985}.Debug|x86.ActiveCfg = Debug|x86
 		{5E4A8713-E558-4CDD-83AE-1A38BA1C2985}.Debug|x86.Build.0 = Debug|x86
 		{5E4A8713-E558-4CDD-83AE-1A38BA1C2985}.Release|x86.ActiveCfg = Release|x86
 		{5E4A8713-E558-4CDD-83AE-1A38BA1C2985}.Release|x86.Build.0 = Release|x86
+		{EA09D4F1-5BF0-40B4-94BB-C3902615BBCB}.Debug|x86.ActiveCfg = Debug|x86
+		{EA09D4F1-5BF0-40B4-94BB-C3902615BBCB}.Debug|x86.Build.0 = Debug|x86
+		{EA09D4F1-5BF0-40B4-94BB-C3902615BBCB}.Release|x86.ActiveCfg = Release|x86
+		{EA09D4F1-5BF0-40B4-94BB-C3902615BBCB}.Release|x86.Build.0 = Release|x86
+	EndGlobalSection
+	GlobalSection(MonoDevelopProperties) = preSolution
+		StartupItem = UmShell\UmShell.csproj
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
