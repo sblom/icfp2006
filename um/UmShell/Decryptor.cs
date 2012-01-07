@@ -4,9 +4,9 @@ using System.IO;
 using System.Linq;
 using System.Text;
 
-using Icfp2006;
+using Icfp2006.UM;
 
-namespace Icfp2006.UM.IO
+namespace Icfp2006.UmShell
 {
   class Decryptor: IOContext
   {

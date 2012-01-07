@@ -1,7 +1,9 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "um", "um.csproj", "{EA09D4F1-5BF0-40B4-94BB-C3902615BBCB}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UM", "um\UM.csproj", "{EA09D4F1-5BF0-40B4-94BB-C3902615BBCB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UmShell", "UmShell\UmShell.csproj", "{5E4A8713-E558-4CDD-83AE-1A38BA1C2985}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -13,6 +15,10 @@ Global
 		{EA09D4F1-5BF0-40B4-94BB-C3902615BBCB}.Debug|x86.Build.0 = Debug|x86
 		{EA09D4F1-5BF0-40B4-94BB-C3902615BBCB}.Release|x86.ActiveCfg = Release|x86
 		{EA09D4F1-5BF0-40B4-94BB-C3902615BBCB}.Release|x86.Build.0 = Release|x86
+		{5E4A8713-E558-4CDD-83AE-1A38BA1C2985}.Debug|x86.ActiveCfg = Debug|x86
+		{5E4A8713-E558-4CDD-83AE-1A38BA1C2985}.Debug|x86.Build.0 = Debug|x86
+		{5E4A8713-E558-4CDD-83AE-1A38BA1C2985}.Release|x86.ActiveCfg = Release|x86
+		{5E4A8713-E558-4CDD-83AE-1A38BA1C2985}.Release|x86.Build.0 = Release|x86
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

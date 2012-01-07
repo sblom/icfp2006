@@ -3,11 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-using Icfp2006.UM.IO;
-
 namespace Icfp2006.UM
 {
-  class UniversalMachine
+  public class UniversalMachine
   {
     private const int INIT_ARRAYS = 16;
     

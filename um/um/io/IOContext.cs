@@ -3,15 +3,15 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Icfp2006.UM.IO
+namespace Icfp2006.UM
 {
-  interface IOContext
+  public interface IOContext
   {
     uint Input();
     void Output(uint ch);
   }
 
-  class ConsoleContext: IOContext
+  public class ConsoleContext: IOContext
   {
     public uint Input()
     {
@@ -23,7 +23,7 @@ namespace Icfp2006.UM.IO
     }
   }
 
-  class ClosureContext: IOContext
+  public class ClosureContext: IOContext
   {
     private Func<uint> input_;
     private Action<uint> output_;

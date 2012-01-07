@@ -6,7 +6,7 @@ using System.Text;
 
 using Icfp2006.UM;
 
-namespace Icfp2006
+namespace Icfp2006.UmShell
 {
   class UmShell
   {
@@ -16,7 +16,7 @@ namespace Icfp2006
       switch(args[0])
       {
         case "decrypt":
-          um = new UniversalMachine(new UM.IO.Decryptor(args[2], args[3]));
+          um = new UniversalMachine(new Decryptor(args[2], args[3]));
           break;
         case "run":
           um = new UniversalMachine();
