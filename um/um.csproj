@@ -8,7 +8,7 @@
     <ProjectGuid>{EA09D4F1-5BF0-40B4-94BB-C3902615BBCB}</ProjectGuid>
     <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Icfp2006</RootNamespace>
+    <RootNamespace>Icfp2006.UM</RootNamespace>
     <AssemblyName>um</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <TargetFrameworkProfile>Client</TargetFrameworkProfile>
@@ -43,8 +43,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="IO.cs" />
-    <Compile Include="Program.cs" />
+    <Compile Include="IO\IOContext.cs" />
+    <Compile Include="IO\Decryptor.cs" />
+    <Compile Include="UmShell.cs" />
     <Compile Include="UniversalMachine.cs" />
   </ItemGroup>
   <ItemGroup>

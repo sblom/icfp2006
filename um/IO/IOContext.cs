@@ -3,16 +3,15 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Icfp2006
+namespace Icfp2006.UM.IO
 {
-  interface IO
+  interface IOContext
   {
     uint Input();
     void Output(uint ch);
-    void Halt();
   }
 
-  class IOConsole: IO
+  class ConsoleContext: IOContext
   {
     public uint Input()
     {
@@ -22,23 +21,17 @@ namespace Icfp2006
     {
       Console.Write((char)ch);
     }
-    public void Halt()
-    {
-      Environment.Exit(0);
-    }
   }
 
-  class IOFlexible: IO
+  class ClosureContext: IOContext
   {
     private Func<uint> input_;
     private Action<uint> output_;
-    private Action halt_;
 
-    public IOFlexible(Func<uint> input, Action<uint> output, Action halt)
+    public ClosureContext(Func<uint> input, Action<uint> output)
     {
       input_ = input;
       output_ = output;
-      halt_ = halt;
     }
 
     public uint Input()
@@ -49,11 +42,6 @@ namespace Icfp2006
     public void Output(uint ch)
     {
       output_(ch);
-    }
-
-    public void Halt()
-    {
-      halt_();
     }
   }
 }

@@ -3,19 +3,23 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Icfp2006
+using Icfp2006.UM.IO;
+
+namespace Icfp2006.UM
 {
   class UniversalMachine
   {
     private const int INIT_ARRAYS = 16;
+    
+    private bool halted_ = false;
 
     private uint executionFinger_; 
     private uint[] registers_ = new uint[8];
     private uint[][] arrays_;
     private Queue<int> arraysFree_ = new Queue<int>();
-    private IO ioContext_;
+    private IOContext ioContext_;
 
-    public UniversalMachine(IO ioContext)
+    public UniversalMachine(IOContext ioContext)
     {
       ioContext_ = ioContext;
 
@@ -26,7 +30,7 @@ namespace Icfp2006
       }
     }
 
-    public UniversalMachine() : this(new IOConsole())
+    public UniversalMachine() : this(new ConsoleContext())
     {
     }
 
@@ -35,7 +39,7 @@ namespace Icfp2006
       arrays_[0] = arrayZero;
     }
     
-    public void DoSpinCycle() {
+    public bool DoSpinCycle() {
       uint @operator = arrays_[0][executionFinger_];
       byte operatorNumber = (byte)((@operator >> 28) & 0xff);
 
@@ -79,7 +83,7 @@ namespace Icfp2006
           registers_[registerA] = ~(registers_[registerB] & registers_[registerC]);
           break;
         case 7: // Halt.
-          ioContext_.Halt();
+          halted_ = true;
           break;
         case 8: // Allocation.
           if (arraysFree_.Count == 0)
@@ -120,6 +124,8 @@ namespace Icfp2006
       }
 
       ++executionFinger_;
+
+      return !halted_;
     }
   }
 }
