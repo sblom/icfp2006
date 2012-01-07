@@ -13,13 +13,12 @@ namespace Icfp2006
     private uint[] registers_ = new uint[8];
     private uint[][] arrays_;
     private Queue<int> arraysFree_ = new Queue<int>();
-    Func<uint> input_;
-    Action<uint> output_;
+    private IO ioContext_;
 
-    public UniversalMachine(Func<uint> input, Action<uint> output)
+    public UniversalMachine(IO ioContext)
     {
-      input_ = input;
-      output_ = output;
+      ioContext_ = ioContext;
+
       arrays_ = new uint[INIT_ARRAYS][];
       for (int i = 1; i < INIT_ARRAYS; ++i)
       {
@@ -27,7 +26,7 @@ namespace Icfp2006
       }
     }
 
-    public UniversalMachine() : this(() => { return (uint)Console.Read(); }, (uint c) => Console.Write((char)c))
+    public UniversalMachine() : this(new IOConsole())
     {
     }
 
@@ -40,12 +39,22 @@ namespace Icfp2006
       uint @operator = arrays_[0][executionFinger_];
       byte operatorNumber = (byte)((@operator >> 28) & 0xff);
 
-      byte registerA = (byte)((@operator >> 6) & 0x7);
-      byte registerB = (byte)((@operator >> 3) & 0x7);
-      byte registerC = (byte)(@operator & 0x7);
+      uint constant;
+      byte registerA, registerB, registerC;
 
-      uint constant = @operator & ((1 << 25) - 1);
-      byte constRegisterA = (byte)((@operator >> 25) & 0x7);
+      if (operatorNumber == 13)
+      {
+        constant = @operator & ((1 << 25) - 1);
+        registerA = (byte)((@operator >> 25) & 0x7);
+        registerB = registerC = 0;
+      }
+      else
+      {
+        constant = 0;
+        registerA = (byte)((@operator >> 6) & 0x7);
+        registerB = (byte)((@operator >> 3) & 0x7);
+        registerC = (byte)(@operator & 0x7);
+      }
 
       switch (operatorNumber) {
         case 0: // Conditional Move.
@@ -70,7 +79,7 @@ namespace Icfp2006
           registers_[registerA] = ~(registers_[registerB] & registers_[registerC]);
           break;
         case 7: // Halt.
-          Environment.Exit(0);
+          ioContext_.Halt();
           break;
         case 8: // Allocation.
           if (arraysFree_.Count == 0)
@@ -91,10 +100,10 @@ namespace Icfp2006
           arraysFree_.Enqueue((int)registers_[registerC]);
           break;
         case 10: // Output.
-          output_(registers_[registerC]);
+          ioContext_.Output(registers_[registerC]);
           break;
         case 11: // Input.
-          registers_[registerC] = input_();
+          registers_[registerC] = ioContext_.Input();
           break;
         case 12: // Load Program.   
           if (registers_[registerB] != 0)
@@ -104,7 +113,7 @@ namespace Icfp2006
           executionFinger_ = registers_[registerC] - 1;
           break;
         case 13: // Orthography.
-          registers_[constRegisterA] = constant;
+          registers_[registerA] = constant;
           break;
         default:
           throw new Exception();
