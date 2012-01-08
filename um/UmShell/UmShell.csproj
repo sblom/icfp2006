@@ -43,6 +43,7 @@
   <ItemGroup>
     <Compile Include="Decryptor.cs" />
     <Compile Include="UmShell.cs" />
+    <Compile Include="getline.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Properties\" />
