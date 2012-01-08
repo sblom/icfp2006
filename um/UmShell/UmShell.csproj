@@ -21,6 +21,8 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <Commandlineparameters>run umix.um</Commandlineparameters>
+    <Externalconsole>true</Externalconsole>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
     <PlatformTarget>x86</PlatformTarget>
@@ -41,9 +43,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Decryptor.cs" />
     <Compile Include="UmShell.cs" />
     <Compile Include="getline.cs" />
+    <Compile Include="InteractiveContext.cs" />
+    <Compile Include="DecryptorContext.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Properties\" />

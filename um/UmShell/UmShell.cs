@@ -16,10 +16,10 @@ namespace Icfp2006.UmShell
       switch(args[0])
       {
         case "decrypt":
-          um = new UniversalMachine(new Decryptor(args[2], args[3]));
+          um = new UniversalMachine(new DecryptorContext(args[2], args[3]));
           break;
         case "run":
-          um = new UniversalMachine();
+          um = new UniversalMachine(new InteractiveContext());
           break;
         default:
           return 1;
